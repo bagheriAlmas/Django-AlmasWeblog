@@ -14,7 +14,7 @@ class ArticleAdmin(admin.ModelAdmin):
         ('Important Dates', {'fields': ('created', 'updated')}),
     )
 
-    readonly_fields = ['slug']
+    readonly_fields = ['slug','created','updated']
     list_display = ['id', 'title', 'author', 'status', 'created', 'updated']
     list_filter = ['author__username', 'status']
     search_fields = ['author__username', 'title']

@@ -9,6 +9,7 @@ register = template.Library()
 
 @register.simple_tag()
 def articles_count():
+
     return Article.PublishedArticle.count()
 
 
