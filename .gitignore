@@ -4,4 +4,3 @@ almasweblog/local_settings.py
 media/
 **/__pycache__
 *.pyc
-db.sqlite3

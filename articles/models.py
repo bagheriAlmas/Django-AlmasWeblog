@@ -1,8 +1,10 @@
 from django.db import models
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils.text import slugify
 from datetime import datetime
+
+from users.models import CustomUser
 
 
 class PublishedManager(models.Manager):
@@ -22,7 +24,7 @@ class Article(models.Model):
     title = models.CharField(max_length=200)
     description = models.CharField(max_length=300)
     content = models.TextField()
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='Articles')
+    author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='Articles')
     status = models.CharField(max_length=15, choices=ARTICLE_STATUS, default='checking')
     image = models.ImageField(upload_to='images/%Y/%m/%d',blank=True,null=True)
     categories = models.ManyToManyField('Category', blank=True)
