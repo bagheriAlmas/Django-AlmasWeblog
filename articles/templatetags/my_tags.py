@@ -20,4 +20,4 @@ def new_article(value):
     created_date_prime = datetime.strptime(created_date, '%d %m %y')
     created_date_now = datetime.strptime(now_date, '%d %m %y')
 
-    return (created_date_now - created_date_prime).days < 7
+    return (created_date_now - created_date_prime).days < 2

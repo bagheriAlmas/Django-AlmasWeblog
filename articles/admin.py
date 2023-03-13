@@ -9,7 +9,7 @@ from articles.models import Article, Category
 class ArticleAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {'fields': ('title', 'author', 'slug')}),
-        ('Content', {'fields': ('description','content', 'image')}),
+        ('Content', {'fields': ('description','content', 'image','resource')}),
         ('Content Info', {'fields': ('read_time','status','categories')}),
         ('Important Dates', {'fields': ('created', 'updated')}),
     )

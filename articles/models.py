@@ -26,14 +26,13 @@ class Article(models.Model):
     content = models.TextField()
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='Articles')
     status = models.CharField(max_length=15, choices=ARTICLE_STATUS, default='checking')
-    image = models.ImageField(upload_to='images/%Y/%m/%d',blank=True,null=True)
+    image = models.ImageField(upload_to='images/%Y/%m/%d', blank=True, null=True, default='default_image.png')
     categories = models.ManyToManyField('Category', blank=True)
     read_time = models.PositiveSmallIntegerField()
-    resource = models.CharField(max_length=300, null=True,blank=True)
+    resource = models.CharField(max_length=300, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    slug = models.SlugField(unique=True, null=True)
-
+    slug = models.SlugField(unique=True, null=True, max_length=300)
 
     class Meta:
         ordering = ('-created',)
@@ -53,7 +52,7 @@ class Article(models.Model):
 
 
 class Category(models.Model):
-    title = models.CharField( max_length=50)
+    title = models.CharField(max_length=50)
     is_enable = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

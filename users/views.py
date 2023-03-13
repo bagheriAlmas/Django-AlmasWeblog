@@ -14,3 +14,21 @@ def user_register_view(request):
     else:
         form = CustomUserCreationForm()
     return render(request, 'registration/register.html', {'form': form})
+
+
+def user_detail_view(request, pk):
+    user = CustomUser.objects.get(pk=pk)
+    user_articles = user.Articles.all()
+    return render(request, 'users/user_profile.html', {'user': user, 'articles': user_articles})
+
+# def user_update_view(request,pk):
+#
+#     if request.method == 'POST':
+#         form = CustomUserChangeForm(request.POST, request.FILES, instance=request.user)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('home')
+#     else:
+#         form = CustomUserChangeForm(instance=request.user)
+#
+#     return render(request, 'users/user_update.html', {'form': form})

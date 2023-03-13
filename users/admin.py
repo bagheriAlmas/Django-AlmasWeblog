@@ -11,7 +11,7 @@ from users.models import CustomUser
 class ArticleAdmin(admin.ModelAdmin):
     fieldsets = (
         ('User Info', {'fields': ('first_name', 'last_name', 'username', 'password')}),
-        ('Socials', {'fields': ('email', 'instagram', 'twitter')}),
+        ('Socials', {'fields': ('email', 'facebook', 'twitter')}),
         ('About User', {'fields': ('avatar', 'about_me')}),
         ('Important Settings', {'fields': ('is_staff','is_active','is_superuser')}),
     )
