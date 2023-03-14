@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import *
 
@@ -7,10 +8,12 @@ def user_register_view(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST, request.FILES)
         if form.is_valid():
+            username = form['username']
+            print(username)
             user = form.save(commit=False)
             user.avatar = form.cleaned_data.get('avatar')
             user.save()
-            return redirect('home')
+            return redirect('login')
     else:
         form = CustomUserCreationForm()
     return render(request, 'registration/register.html', {'form': form})
@@ -20,6 +23,13 @@ def user_detail_view(request, pk):
     user = CustomUser.objects.get(pk=pk)
     user_articles = user.Articles.all()
     return render(request, 'users/user_profile.html', {'user': user, 'articles': user_articles})
+
+
+def user_update_view(request, pk):
+    user = CustomUser.objects.get(pk=pk)
+    user_articles = user.Articles.all()
+    return render(request, 'users/user_update.html', {'user': user, 'articles': user_articles})
+
 
 # def user_update_view(request,pk):
 #
