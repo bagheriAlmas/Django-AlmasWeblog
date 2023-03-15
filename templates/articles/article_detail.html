@@ -79,11 +79,11 @@
 
                 {% for post in randomPosts %}
                     <div class="col-md-4">
-                        <div class="card">
+                        <div class="card h-100">
                             <a href="{% url 'article_detail' post.slug %}">
                                 <img class="img-fluid img-thumb" src="{{ post.image.url }}" alt="">
                             </a>
-                            <div class="card-block">
+                            <div class="card-block" style="display: flex;flex-direction: column;justify-content: space-between;height: 100%;">
                                 <h2 class="card-title"><a href="{% url 'article_detail' post.slug %}">{{ post.title }}</a></h2>
                                 <div class="metafooter">
                                     <div class="wrapfooter">

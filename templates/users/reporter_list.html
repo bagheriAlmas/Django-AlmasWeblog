@@ -3,12 +3,6 @@
 {% block content %}
     <div class="graybg">
         <style>
-            .followbutton {
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                height: 100%;
-            }
 
         </style>
         <div class="container">
@@ -20,7 +14,8 @@
                             <a href="{% url 'user_detail' user.id %}">
                                 <img class="" style="width: 100%; " src="{{ user.avatar.url }}" alt="">
                             </a>
-                            <div class="card-block followbutton">
+                            <div class="card-block"
+                                 style="display: flex;flex-direction: column;justify-content: space-between;height: 100%;">
                                 <p class="">{{ user.about_me }}</p>
                                 <div class="metafooter">
                                     <div class="wrapfooter">
