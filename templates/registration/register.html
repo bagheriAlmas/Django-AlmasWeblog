@@ -7,7 +7,7 @@
 {% block content %}
     <div class="w-100 row">
         <div class="w-50 rounded-left" style="background: #f4f9fd">
-            <form method="post" class="p-5">
+            <form method="post" class="p-5" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form|crispy }}
 
