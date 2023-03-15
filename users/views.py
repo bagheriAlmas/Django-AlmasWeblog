@@ -31,6 +31,9 @@ def user_update_view(request, pk):
     return render(request, 'users/user_update.html', {'user': user, 'articles': user_articles})
 
 
+def reporter_list_view(request):
+    users = CustomUser.objects.filter(is_staff=True)
+    return render(request, 'users/reporter_list.html', {'users': users})
 # def user_update_view(request,pk):
 #
 #     if request.method == 'POST':
