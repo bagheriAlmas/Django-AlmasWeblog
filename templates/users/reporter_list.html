@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load my_tags %}
+{% block content %}
+    <div class="graybg">
+        <style>
+            .followbutton {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height: 100%;
+            }
+
+        </style>
+        <div class="container">
+            <div class="row listrecent listrelated">
+
+                {% for user in users %}
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <a href="{% url 'user_detail' user.id %}">
+                                <img class="" style="width: 100%; " src="{{ user.avatar.url }}" alt="">
+                            </a>
+                            <div class="card-block followbutton">
+                                <p class="">{{ user.about_me }}</p>
+                                <div class="metafooter">
+                                    <div class="wrapfooter">
+								<span class="meta-footer-thumb">
+								<a class="btn btn-outline-success" href="#">Follow</a>
+								</span>
+
+                                        <span class="post-read-more"><a href="#"
+                                                                        title="Read Story">{% reporter_articles_count user %} Articles</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
