@@ -1,5 +1,27 @@
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">register</button>
-</form>
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+    <div class="w-100 row">
+        <div class="w-50 rounded-left" style="background: #f4f9fd">
+            <form method="post" class="p-5">
+                {% csrf_token %}
+                {{ form|crispy }}
+
+                <div class="" style=" text-align: center">
+                    <button class="btn btn-primary w-50 mt-3" type="submit">Register</button>
+
+                </div>
+            </form>
+        </div>
+        <div class=" w-50 ml-auto mx-auto rounded-right"
+             style="background: #dbe7ff ;text-align: start; display:flex; justify-content:center; align-items:start;">
+            <div class="share">
+                <img class=" " src="{% static 'img/registration/icon_register.png' %}"/>
+            </div>
+        </div>
+    </div>
+{% endblock %}

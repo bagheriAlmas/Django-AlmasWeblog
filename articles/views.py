@@ -26,7 +26,7 @@ def article_detail_view(request, slug):
             obj.save()
             return HttpResponseRedirect(request.path_info)
     else:
-        context = {'article': article,'comments' : comments, 'form': form , 'randomPosts' : random_articles(3)}
+        context = {'article': article, 'comments': comments, 'form': form, 'randomPosts': random_articles(3)}
         return render(request, 'articles/article_detail.html', context)
 
 

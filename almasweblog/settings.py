@@ -32,6 +32,12 @@ INSTALLED_APPS = [
 
     'articles',
     'users',
+
+    'crispy_forms',
+    'bootstrap4',
+    'crispy_bootstrap4',
+
+
 ]
 
 MIDDLEWARE = [
@@ -114,3 +120,6 @@ AUTH_USER_MODEL = 'users.CustomUser'
 
 LOGIN_REDIRECT_URL = 'article_list'
 LOGOUT_REDIRECT_URL = 'login'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+CRISPY_TEMPLATE_PACK = "bootstrap4"
