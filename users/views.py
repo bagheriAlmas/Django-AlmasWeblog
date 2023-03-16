@@ -22,7 +22,11 @@ def user_register_view(request):
 def user_detail_view(request, pk):
     user = CustomUser.objects.get(pk=pk)
     user_articles = user.Articles.all()
-    return render(request, 'users/reporter_profile.html', {'user': user, 'articles': user_articles})
+    if user.is_staff:
+        return render(request, 'users/reporter_profile.html', {'user': user, 'articles': user_articles})
+    else:
+        return render(request, 'users/user_profile.html', {'user': user})
+
 
 
 def user_update_view(request, pk):
