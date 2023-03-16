@@ -1,4 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.forms import forms
+
 from .models import CustomUser
 
 
@@ -9,11 +11,12 @@ class CustomUserCreationForm(UserCreationForm):
         # fields = ['username', 'password1','password2', 'avatar',]
 
 
-class CustomUserChangeForm(UserCreationForm):
+class CustomUserChangeForm(UserChangeForm):
+    password = None
+
     class Meta:
         model = CustomUser
-        fields = ['first_name', 'last_name', 'username', 'password1', 'password2', 'email', 'facebook', 'twitter',
-                  'avatar', 'about_me']
+        fields = ['first_name', 'last_name', 'username', 'email', 'facebook', 'twitter', 'avatar', 'about_me']
 
         # fields = ['first_name', 'last_name', 'username', 'email', 'instagram', 'twitter', 'avatar', 'about_me']
         # fields = ['username', 'password1','password2', 'avatar',]

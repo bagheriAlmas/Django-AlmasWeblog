@@ -1,5 +1,5 @@
-from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import *
 
 
@@ -22,13 +22,18 @@ def user_register_view(request):
 def user_detail_view(request, pk):
     user = CustomUser.objects.get(pk=pk)
     user_articles = user.Articles.all()
-    return render(request, 'users/user_profile.html', {'user': user, 'articles': user_articles})
+    return render(request, 'users/reporter_profile.html', {'user': user, 'articles': user_articles})
 
 
 def user_update_view(request, pk):
-    user = CustomUser.objects.get(pk=pk)
-    user_articles = user.Articles.all()
-    return render(request, 'users/user_update.html', {'user': user, 'articles': user_articles})
+    # user = CustomUser.objects.get(pk=pk)
+    user = get_object_or_404(CustomUser, pk=pk)
+    form = CustomUserChangeForm(request.POST or None, instance=user)
+    if request.method == 'POST':
+        form.save()
+        return HttpResponseRedirect('/users/'+ str(pk))
+    # user_articles = user.Articles.all()
+    return render(request, 'users/user_update.html', {'user': user, 'form': form})
 
 
 def reporter_list_view(request):
