@@ -8,7 +8,7 @@
     <div class="w-100 row">
         <div class="w-50 rounded-left" style="background: #f4f9fd">
             <div class="w-100 text-center" style="padding-top: 5%">
-                <img class="img-thumbnail" src="{{ user.avatar.url }}">
+                <img class="img-thumbnail" src="{{ user.avatar.url }}" style="max-width: 256px">
             </div>
             <form method="post" class="p-5">
                 {% csrf_token %}
