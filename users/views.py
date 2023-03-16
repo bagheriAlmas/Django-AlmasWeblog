@@ -31,7 +31,7 @@ def user_update_view(request, pk):
     form = CustomUserChangeForm(request.POST or None, instance=user)
     if request.method == 'POST':
         form.save()
-        return HttpResponseRedirect('/users/'+ str(pk))
+        return HttpResponseRedirect('/users/' + str(pk))
     # user_articles = user.Articles.all()
     return render(request, 'users/user_update.html', {'user': user, 'form': form})
 
