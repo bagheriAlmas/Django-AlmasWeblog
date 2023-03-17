@@ -21,11 +21,15 @@ def user_register_view(request):
 
 def user_detail_view(request, pk):
     user = CustomUser.objects.get(pk=pk)
+    return render(request, 'users/user_profile.html', {'user': user})
+
+
+def reporter_article_list_view(request, pk):
+    user = CustomUser.objects.get(pk=pk)
+
     user_articles = user.Articles.all()
     if user.is_staff:
-        return render(request, 'users/reporter_profile.html', {'user': user, 'articles': user_articles})
-    else:
-        return render(request, 'users/user_profile.html', {'user': user})
+        return render(request, 'users/reporter_article_list.html', {'user': user, 'articles': user_articles})
 
 
 def user_update_view(request, pk):

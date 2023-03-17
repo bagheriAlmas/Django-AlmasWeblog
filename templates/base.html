@@ -48,11 +48,12 @@
 
                         {% if user.is_staff %}
                             <a class="dropdown-item" href="{% url 'admin:index' %}">Admin Panel</a>
+                            <a class="dropdown-item" href="{% url 'reporter_article_list' request.user.id %}">My Articles</a>
                             <div class="dropdown-divider"></div>
 
                         {% endif %}
 
-                        <a class="dropdown-item" href="{% url 'user_update' user.id %}">Edit Profile Info</a>
+                        <a class="dropdown-item" href="{% url 'user_detail' user.id %}">My Profile</a>
                         <a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
@@ -79,9 +80,6 @@
                     <a class="nav-link" href="{% url 'article_list' %}">Articles <span class="sr-only">(current)</span></a>
                 </li>
                 {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'user_detail' user.id %}">Profile</a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="{% url 'reporter_list' %}">Reporters</a>
                     </li>
