@@ -1,10 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-hi
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <link rel="stylesheet" href="{% static 'css/reporter_list/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    {#    <link rel="stylesheet" href="{% static 'css/reporter_list/font-awesome.min.css' %}">#}
+
+    <div class="h-100" style="height: 100%;">
+        <div class="col-md-12 h-100">
+            <div class="card-hover-shadow-2x mb-3 card">
+                <div class="card-header-tab card-header">
+                    <div class="card-header-title font-size-lg text-capitalize font-weight-normal" style="width: 50%;">
+                        <i
+                                class="fa fa-tasks"></i>&nbsp;Task Lists
+                    </div>
+                    <div style="width: 50%;text-align: right;">
+                        <button class="btn btn-primary">Add Task</button>
+                    </div>
+                </div>
+                <div class="scroll-area-sm h-100">
+                    <perfect-scrollbar class="ps-show-limits">
+                        <div style="position: static;" class="ps ps--active-y">
+                            <div class="ps-content">
+                                <ul class=" list-group list-group-flush">
+
+                                    {% for article in articles %}
+                                        <li class="list-group-item">
+                                            {% if article.status == 'checking' %}
+                                                <div class="todo-indicator bg-warning"></div>
+                                            {% elif article.status == 'published' %}
+                                                <div class="todo-indicator bg-success"></div>
+                                            {% else %}
+                                                <div class="todo-indicator bg-danger"></div>
+                                            {% endif %}
+
+                                            <div class="widget-content p-0">
+                                                <div class="widget-content-wrapper justify-content-between">
+
+                                                    <div class="widget-content-left mr-2">
+                                                        <div class="custom-checkbox custom-control">
+                                                            <img src="{{ article.image.url }}" style="width: 64px">
+                                                        </div>
+                                                    </div>
+                                                    <div class="widget-content-left">
+                                                        <div class="widget-heading">{{ article.title|truncatechars:80 }}</div>
+                                                        <div class="widget-subheading">
+                                                            <i>{{ article.description|truncatechars:120 }}</i></div>
+                                                        <div class="widget-subheading"><i>{{ article.created }}</i>
+                                                        </div>
+                                                    </div>
+                                                    <div style="float: right" class="widget-content-right ">
+                                                        <button class="border-0 btn-transition btn btn-outline-success">
+                                                            <i class="fa fa-pencil-square-o" href=""></i></button>
+                                                        <button class="border-0 btn-transition btn btn-outline-danger">
+                                                            <i class="fa fa-trash"></i>
+
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+
+
+                                </ul>
+                            </div>
+
+                        </div>
+                    </perfect-scrollbar>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
