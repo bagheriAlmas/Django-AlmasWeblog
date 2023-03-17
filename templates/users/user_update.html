@@ -10,7 +10,7 @@
             <div class="w-100 text-center" style="padding-top: 5%">
                 <img class="img-thumbnail" src="{{ user.avatar.url }}" style="max-width: 256px">
             </div>
-            <form method="post" class="p-5">
+            <form method="post" class="p-5" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form|crispy }}
                 <a class="text-primary  w-50 mt-3" href="{% url 'password_change' %}">Change Password</a>

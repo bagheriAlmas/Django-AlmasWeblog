@@ -1,4 +1,4 @@
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import *
 
@@ -28,15 +28,20 @@ def user_detail_view(request, pk):
         return render(request, 'users/user_profile.html', {'user': user})
 
 
-
 def user_update_view(request, pk):
     # user = CustomUser.objects.get(pk=pk)
     user = get_object_or_404(CustomUser, pk=pk)
     form = CustomUserChangeForm(request.POST or None, instance=user)
     if request.method == 'POST':
-        form.save()
-        return HttpResponseRedirect('/users/' + str(pk))
-    # user_articles = user.Articles.all()
+        if form.is_valid():
+            form.save(commit=False)
+
+            avatar = request.FILES.get('avatar')  # Use request.FILES
+            if not avatar:
+                avatar = 'default_user.jpg'
+            user.avatar = avatar
+            user.save()
+            return HttpResponseRedirect('/users/' + str(pk))
     return render(request, 'users/user_update.html', {'user': user, 'form': form})
 
 
