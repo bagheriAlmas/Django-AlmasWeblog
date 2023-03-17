@@ -24,14 +24,6 @@ def user_detail_view(request, pk):
     return render(request, 'users/user_profile.html', {'user': user})
 
 
-def reporter_article_list_view(request, pk):
-    user = CustomUser.objects.get(pk=pk)
-
-    user_articles = user.Articles.all()
-    if user.is_staff:
-        return render(request, 'users/reporter_article_list.html', {'user': user, 'articles': user_articles})
-
-
 def user_update_view(request, pk):
     # user = CustomUser.objects.get(pk=pk)
     user = get_object_or_404(CustomUser, pk=pk)
@@ -52,14 +44,11 @@ def user_update_view(request, pk):
 def reporter_list_view(request):
     users = CustomUser.objects.filter(is_staff=True)
     return render(request, 'users/reporter_list.html', {'users': users})
-# def user_update_view(request,pk):
-#
-#     if request.method == 'POST':
-#         form = CustomUserChangeForm(request.POST, request.FILES, instance=request.user)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('home')
-#     else:
-#         form = CustomUserChangeForm(instance=request.user)
-#
-#     return render(request, 'users/user_update.html', {'form': form})
+
+
+def reporter_article_list_view(request, pk):
+    user = CustomUser.objects.get(pk=pk)
+    user_articles = user.Articles.all()
+    if user.is_staff:
+        return render(request, 'users/reporter_article_list.html', {'user': user, 'articles': user_articles})
+
