@@ -8,6 +8,7 @@ from articles.models import Article, Category, Comment
 class CommentInline(admin.StackedInline):
     model = Comment
     fields = ['owner', 'article', 'content']
+    extra = 0
 
 
 @admin.register(Article)
