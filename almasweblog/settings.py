@@ -33,6 +33,8 @@ INSTALLED_APPS = [
     'articles',
     'users',
 
+    'rest_framework',
+
     'crispy_forms',
     'bootstrap4',
     'crispy_bootstrap4',
