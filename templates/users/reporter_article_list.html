@@ -50,13 +50,25 @@
                                                         <div class="widget-subheading"><i>{{ article.created }}</i>
                                                         </div>
                                                     </div>
-                                                    <div style="float: right" class="widget-content-right ">
-                                                        <button class="border-0 btn-transition btn btn-outline-success">
-                                                            <i class="fa fa-pencil-square-o" href=""></i></button>
-                                                        <button class="border-0 btn-transition btn btn-outline-danger">
-                                                            <i class="fa fa-trash"></i>
 
-                                                        </button>
+                                                    <div style="float: right" class="widget-content-right ">
+                                                        {#                                                        <script type="text/javascript">#}
+                                                        {##}
+                                                        {#                                                            document.getElementById("btnUpdate").onclick = function () {#}
+                                                        {#                                                                location.href = "{% url 'article_update' article.slug %}";#}
+                                                        {#                                                            };#}
+                                                        {#                                                        </script>#}
+                                                        <a class="btn btn-outline-info border-0"
+                                                           href="{% url 'article_detail' article.slug %}"><i
+                                                                class="fa fa-folder-open-o"></i></a>
+
+                                                        <a class="btn btn-outline-success border-0"
+                                                           href="{% url 'admin:articles_article_change' article.id %}"><i
+                                                                class="fa fa-pencil-square-o"></i></a>
+                                                        <a class="btn btn-outline-danger border-0"
+                                                           href="{% url 'admin:articles_article_delete' article.id %}"><i
+                                                                class="fa fa-trash-o"></i></a>
+
                                                     </div>
 
                                                 </div>
@@ -74,4 +86,6 @@
             </div>
         </div>
     </div>
+
+
 {% endblock %}
