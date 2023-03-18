@@ -2,7 +2,7 @@ from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import CreateView
 
-from articles.forms import CommentForm
+from articles.forms import CommentForm, ArticleForm
 from articles.models import Article, Comment
 
 
@@ -30,12 +30,24 @@ def article_detail_view(request, slug):
         return render(request, 'articles/article_detail.html', context)
 
 
+# def article_update_view(request, slug):
+#     article = get_object_or_404(Article, slug=slug)
+#     form = ArticleForm(request.POST or None, instance=article)
+#     if request.method == 'POST':
+#         form.save()
+#         return HttpResponseRedirect('/articles/' + str(slug))
+#
+#     form = ArticleForm()
+#
+#     context = {'article': article, 'form': form}
+#     return render(request, 'articles/article_update.html', context)
+#
+
 def random_articles(num):
     articles = Article.PublishedArticle.all()
     random = articles.order_by('?')[:num]
     return random
 
-
-def comment_list_view(request, slug):
-    comments = Comment.objects.filter(article__slug=slug)
-    return render(request, 'test.html', {'comments': comments})
+# def comment_list_view(request, slug):
+#     comments = Comment.objects.filter(article__slug=slug)
+#     return render(request, 'test.html', {'comments': comments})
