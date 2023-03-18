@@ -1,5 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from .forms import *
 
 
@@ -24,6 +25,7 @@ def user_detail_view(request, pk):
     return render(request, 'users/user_profile.html', {'user': user})
 
 
+@login_required()
 def user_update_view(request, pk):
     # user = CustomUser.objects.get(pk=pk)
     user = get_object_or_404(CustomUser, pk=pk)
@@ -46,9 +48,9 @@ def reporter_list_view(request):
     return render(request, 'users/reporter_list.html', {'users': users})
 
 
+@login_required()
 def reporter_article_list_view(request, pk):
     user = CustomUser.objects.get(pk=pk)
     user_articles = user.Articles.all()
     if user.is_staff:
         return render(request, 'users/reporter_article_list.html', {'user': user, 'articles': user_articles})
-
