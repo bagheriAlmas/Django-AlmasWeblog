@@ -26,5 +26,12 @@ class ArticleAdmin(admin.ModelAdmin):
     filter_horizontal = ['categories']
     inlines = [CommentInline, ]
 
+    # Each User Can Manage own Articles
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+        return qs.filter(author=request.user)
+
 
 admin.site.register(Category)
