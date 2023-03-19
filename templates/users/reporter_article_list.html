@@ -16,7 +16,6 @@
                                 class="fa fa-tasks"></i>&nbsp;Task Lists
                     </div>
                     <div style="width: 50%;text-align: right;">
-                        <button class="btn btn-primary">Add Task</button>
                         <a class="btn btn-primary" href="{% url 'admin:articles_article_add' %}">Add Task</a>
                     </div>
                 </div>
@@ -36,7 +35,7 @@
                                                 <div class="todo-indicator bg-danger"></div>
                                             {% endif %}
 
-                                            <div class="widget-content p-0">
+                                            <div class="widget-content p-0 w-100">
                                                 <div class="widget-content-wrapper justify-content-between">
 
                                                     <div class="widget-content-left mr-2">
@@ -53,12 +52,6 @@
                                                     </div>
 
                                                     <div style="float: right" class="widget-content-right ">
-                                                        {#                                                        <script type="text/javascript">#}
-                                                        {##}
-                                                        {#                                                            document.getElementById("btnUpdate").onclick = function () {#}
-                                                        {#                                                                location.href = "{% url 'article_update' article.slug %}";#}
-                                                        {#                                                            };#}
-                                                        {#                                                        </script>#}
                                                         <a class="btn btn-outline-info border-0"
                                                            href="{% url 'article_detail' article.slug %}"><i
                                                                 class="fa fa-folder-open-o"></i></a>
